@@ -1,0 +1,98 @@
+from django.urls import path
+from django.urls import include
+from dbmanage.views import *
+
+urlpatterns = [
+    path('register/', register, name='register'),
+    path('login/', login, name='login'),
+    path('refresh-token/', refresh_token, name='refresh-token'),
+    path('notifications/', include('notifications.urls', namespace='notifications')),
+    # path('users/', UserList.as_view(), name='user-list'),
+    # path('users/<int:pk>/', UserDetail.as_view(), name='user-detail'),
+    path('farmers/', FarmerList.as_view(), name='farmer-list'),
+    path('farmers/<int:pk>/', FarmerDetail.as_view(), name='farmer-detail'),
+    path('consumers/', ConsumerList.as_view(), name='consumer-list'),
+    path('consumers/<int:pk>/', ConsumerDetail.as_view(), name='consumer-detail'),
+    path('mill-managers/<int:pk>/', MillManagerDetail.as_view(), name='mill-manager-detail'),
+    # path('mill-managers/', MillManagerList.as_view(), name='mill-manager-list'),
+    # path('oil-mills/', OilMillList.as_view(), name='oilmill-list'),
+    # path('oil-mills/<int:pk>/', OilMillDetail.as_view(), name='oilmill-detail'),
+    # path('oil-mill/create/', OilMillCreateView.as_view(), name='oil-mill-create'),
+    # path('oil-mill/update/<int:pk>/', OilMillUpdateView.as_view(), name='oil-mill-update'),
+    # path('oil-mill/delete/<int:pk>/', OilMillDeleteView.as_view(), name='oil-mill-delete'),
+    # path('machine/create/', MachineCreateView.as_view(), name='machine-create'),
+    # path('machine/update/<int:pk>/', MachineUpdateView.as_view(), name='machine-update'),
+    # path('machine/delete/<int:pk>/', MachineDeleteView.as_view(), name='machine-delete'),
+    # path('machines/<int:pk>/', MachineDetail.as_view(), name='machine-detail'),
+    # path('machines/', MachineListAPIView.as_view(), name='machine-list'),
+    # path('storage_areas/create/', StorageAreaCreateView.as_view(), name='storage_area_create'),
+    # path('storage_areas/<int:pk>/update/', StorageAreaUpdateView.as_view(), name='storage_area_update'),
+    # path('storage_areas/<int:pk>/delete/', StorageAreaDeleteView.as_view(), name='storage_area_delete'),
+    # path('storage_areas/', StorageAreaListView.as_view(), name='storage_area_list'),
+    # path('storage_areas/<int:pk>/', StorageAreaRetrieveView.as_view(), name='storage_area_detail'),
+    # # Goods management for farmer
+    # path('olive-grove/create/', OliveGroveCreateView.as_view(), name='olive-grove-create'),
+    # path('olive-groves/', OliveGroveList.as_view(), name='olive-grove-list'),
+    # path('olive-grove/<str:name>/', OliveGroveDetailAPIView.as_view(), name='olive-grove-detail-by-name'),
+    # path('olive-grove/<int:id>/', OliveGroveDetailAPIView.as_view(), name='olive-grove-detail-by-id'),
+    # path('olive-grove/update/<int:pk>/', OliveGroveUpdateView.as_view(), name='olive-grove-update'),
+    # path('olive-grove/delete/<int:pk>/', OliveGroveDeleteView.as_view(), name='olive-grove-delete'),
+    # path('harvest/create/', HarvestCreateView.as_view(), name='harvest-create'),
+    # path('harvests/', HarvestListAPIView.as_view(), name='harvest-list'),
+    # path('harvests/<int:id>/', HarvestDetail.as_view(), name='harvest-detail'),
+    # path('harvest/update/<int:pk>/', HarvestUpdateView.as_view(), name='harvest-update'),
+    # path('harvest/delete/<int:pk>/', HarvestDeleteView.as_view(), name='harvest-delete'),
+    # path('farmer/goods/',FarmerGoodsListView.as_view(), name='farmer-goods-list'),
+    # path('farmer/good/<str:code>/', GoodDetailByCodeView.as_view(), name='farmer-good-detail-by-code'),
+    # path('farmer/good/<int:good_id>/', GoodDetailByIDView.as_view(), name='farmer-good-detail-by-id'),
+    # path('farmer/harvest/<str:code>/extraction/', ExtractionOperationCreateView.as_view(), name='farmer-extraction-create'),
+    # path('farmer/oil-product/<str:code>/packaging/', PackagingOperationCreateView.as_view(), name='farmer-packaging-create'),
+    # path('farmer/oil-product/<str:code>/analysis/', AnalysisOperationCreateView.as_view(), name='farmer-analysis-create'),
+    # path('farmer/oil-product/<str:code>/storage/', StorageOperationCreateView.as_view(), name='farmer-storage-operation-create'),
+
+    path('olive-sale-offers/create/', OliveSaleOfferCreateAPIView.as_view(), name='olive_sale_offer_create'),  #POST
+    path('olive-sale-offers/update/<int:pk>/', OliveSaleOfferUpdateAPIView.as_view(), name='olive_sale_offer_update'), #PUT
+    path('olive-sale-offers/', OliveSaleOfferListAPIView.as_view(), name='olive_sale_offers_list'), #GET
+    # # /harvest-sale-offers/?price_min=10&price_max=50&quantity_min=100&quantity_max=500&transportation=1&olives_variety=xxx&sort_by=price_asc
+    path('olive-sale-offers/<pk>/details/', OliveSaleOfferDetails.as_view(), name='olive_sale_offer_details'), #GET
+    path('olive-sale-offers/<pk>/farmer-profile/', OliveSaleOfferFarmerProfile.as_view(), name='olive_sale_offer_farmer_profile'), #GET
+    path('olive-purchase-request/create/', OlivePurchaseRequestCreateView.as_view(), name='olive_purchase_request_create'),  #POST
+    path('olive_purchase_request_detail/<int:pk>/', OlivePurchaseRequestDetail.as_view(), name='olive_purchase_request_detail'),
+    path('olive-purchase-requests/', OlivePurchaseRequestList.as_view(), name='olive_purchase_request_list'),
+    path('olive-purchase-requests/<int:pk>/', OlivePurchaseRequestDetail.as_view(), name='olive_purchase_request_detail'),
+    path('approve-olive-purchase-request/<int:pk>/', ApproveOlivePurchaseRequest.as_view(), name='approve_olive_purchase_request'),
+    path('confirm-olive-purchase/<int:pk>/', ConfirmOlivePurchase.as_view(), name='confirm_olive_purchase'),
+    path('purchased-olive/create/', PurchasedOliveCreateAPIView.as_view(), name='purchased_olive_create' ),
+    path('update-purchased-olive/<int:pk>/', PurchasedOliveUpdateView.as_view(), name='update_purchased_olive'),
+    path('purchased-olive-list/', PurchasedOliveListView.as_view(), name='purchased_olive_list'),
+    path('purchased-olive-detail/<int:pk>/', PurchasedOliveRetrieveAPIView.as_view(), name='purchased_olive_detail'),
+    # path('extraction-request/create/', ExtractionRequestCreateView.as_view(), name='extraction_request_create'),
+    # path('packaging-request/create/', PackagingRequestCreateView.as_view(), name='packaging_request_create'),
+    # path('storage-request/create/', StorageRequestCreateView.as_view(), name='storage_request_create'),
+    # path('analysis-request/create/', AnalysisRequestCreateView.as_view(), name='analysis_request_create'),
+    # path('farmer/requests/', FarmerRequestListView.as_view(), name='farmer-request-list'),
+    # # GET http://localhost:8000/mill-service-requests/?type=extraction&price_min=100&price_max=500&sort_by_date=desc
+    # path('mill/service-requests/', MillServiceRequestListView.as_view(), name='mill-service-request-list'),
+    # path('service-offer/create/', ServiceOfferCreateView.as_view(), name='service-offer-create'),
+    # path('farmer/service-offers/',FarmerServiceOfferListView.as_view(),name='farmer-service-offer-list'),
+    # path('farmer/service-offer/<int:offer_id>/mill-detail/', MillDetailView.as_view(), name='farmer-offer-mill-detail'),
+    # path('farmer/service-offer/<int:offer_id>/service-request/', ServiceRequestDetailView.as_view(), name='service-request-detail'),
+    # path('farmer/process-service-offer/<int:offer_id>/', ProcessServiceOffer.as_view(), name='process-service-offer'),
+    # # specify the action "approve" or "reject" in the request data
+    # # curl -X POST http://localhost:8000/farmer/process-service-offer/1/ -H "Content-Type: application/json" -d '{"action": "approve"}'
+    # path('update-extraction-offer/<int:offer_id>/', ExtractionOperationUpdateView.as_view(), name='update-extraction-offer'),
+    # path('update-packaging-offer/<int:offer_id>/', PackagingOperationUpdateView.as_view(), name='update-packaging-offer'),
+    # path('update-storage-offer/<int:offer_id>/', StorageOperationUpdateView.as_view(), name='update-storage-offer'),
+    # path('update-analysis-offer/<int:offer_id>/', AnalysisOperationUpdateView.as_view(), name='update-analysis-offer'),
+    # # path('extraction-operations/', ExtractionOperationList.as_view(), name='extractionoperation-list'),
+    # path('extraction-operations/<int:pk>/', ExtractionOperationDetail.as_view(), name='extractionoperation-detail'),
+    # path('storage-areas/', StorageAreaListView.as_view(), name='storagearea-list'),
+    # path('storage-areas/create/', StorageAreaCreateView.as_view(), name='storagearea-create'),
+    # path('iot-sensors/<int:pk>/', IoTSensorDetailView.as_view(), name='iotsensor-detail'),
+    # path('sensor-measurements/', SensorMeasurementListView.as_view(), name='sensormeasurement-list'),
+    # path('extracted-oil-productions/<int:pk>/', ExtractedOilProductionDetailView.as_view(),
+    #      name='extractedoilproduction-detail'),
+    # path('oil-analyses/create/', OilAnalysisCreateView.as_view(), name='oilanalysis-create'),
+    # path('oil-purchases/', OilPurchaseListView.as_view(), name='oilpurchase-list'),
+    # path('oil-purchases/create/', OilPurchaseCreateView.as_view(), name='oilpurchase-create'),
+]
